@@ -155,7 +155,11 @@ no shut
 ip address dhcp
 DO BP
 
-
+mastering subnetting:
+3 kapatid college,   shs,     k1
+           250       100      20
+900SQM: 60m
+        300    300    300
 
 
 
