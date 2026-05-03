@@ -61,9 +61,9 @@ EC00
 F000 F
 F400
 F800
-FC00
+2001:fd8:750:FC00:: /54
 
 ex3: 2001:fd8:750::/48 subnet to 64offices
 Convert:64office = r^6
-Add: 48+6 = /54
+Add: /48+/6 = /54
 4isa2nd
