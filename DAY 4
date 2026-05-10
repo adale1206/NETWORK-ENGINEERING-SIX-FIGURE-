@@ -1,2 +1,14 @@
 DAY 4
 ----HACKING AND CYBERSECURITY----
+HACKERS: ATTACK 139 AND 445
+
+INITIAL ACCESS: (k) fi
+net use \\10.k.1.10\ipc$
+
+net use x: \\10.k.1.10\c$  !!!!TO CREATE ABLE TO ACCESS LOCAL C
+net use x: /delete !!!! TO GET OUT / DISCONNECT 
+
+privilegeuse:
+net use x: /delete
+net use x: \\10.k.1.10\c$ 
+
