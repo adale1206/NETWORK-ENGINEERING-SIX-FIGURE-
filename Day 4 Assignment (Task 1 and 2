@@ -26,10 +26,27 @@ G1 208.8.8.128
 G2 192.168.102.128
 G3 192.168.103.128
 
-
-
-!TASK2: ACLlab hackable
+-----Create standard access-lst to allow only telnet via gi1 management 
 config t
+ip access-list standard internalonly
+permit 208.8.8.128 0.0.0.255
+end
+
+config t
+access-list 1 permit 208.8.8.128 0.0.0.255
+
+!for telnet
+line vty 0 14
+access-class internalonly in
+
+!for internet
+config t
+ip http access-class 1 
+
+show ip int brief
+----!TASK2: ACLlab hackable (intentional intent ofhacking)
+config t
+no ip http access-class 1 
 service finger
 service dhcp
 service tcp-small-servers
@@ -39,3 +56,85 @@ telephony-service
 !may not work
 ip http server
 ip http secure-server
+line vty 0 14
+no access-class internalonly in
+
+
+WRONG-----
+!MAKE BET10.COM AND BET11.COM
+config t
+int Gi 3
+ no shut
+ ip add 192.168.103.11 255.255.255.0
+ ip add 192.168.103.10 255.255.255.0 Secondary
+service finger
+service tcp-small-servers
+service udp-small-servers
+ip dns server
+ip http server
+ip http secure-server
+telephony-service
+max-ephone 2
+max-dn 4
+ip source-address 192.168.103.11 port 2000
+voice service voip
+ allow-connections sip to sip
+ sip
+   registrar server expires max 600 min 60
+ voice register global
+  mode cme
+  source-address 192.168.103.11 port 5060
+  max-dn 12
+  max-pool 12
+!Make Ping EASY
+ip host bet10.com 192.168.103.10
+ip host bet11.com 192.168.103.11
+ip host pc 10.m.1.10
+ip host cm 10.m.100.8
+ip host cm2 10.m.100.9
+ip host p1 10.m.100.101
+ip host p2 10.m.100.102
+ip host c6 10.m.50.6
+ip host c8 10.m.50.8
+ip host sw 10.m.1.4
+ip host ed 10.m.m.1
+
+
+
+config t
+int Gi 3
+ no shut
+ ip add 192.168.103.8 255.255.255.0
+ ip add 192.168.102.8 255.255.255.0 Secondary
+service finger
+service tcp-small-servers
+service udp-small-servers
+ip dns server
+ip http server
+ip http secure-server
+telephony-service
+max-ephone 2
+max-dn 4
+ip source-address 192.168.103.11 port 2000
+voice service voip
+ allow-connections sip to sip
+ sip
+   registrar server expires max 600 min 60
+ voice register global
+  mode cme
+  source-address 192.168.103.11 port 5060
+  max-dn 12
+  max-pool 12
+!Make Ping EASY
+ip host bet10.com 192.168.102.8
+ip host bet11.com 192.168.103.8
+ip host pc 10.m.1.10
+ip host cm 10.m.100.8
+ip host cm2 10.m.100.9
+ip host p1 10.m.100.101
+ip host p2 10.m.100.102
+ip host c6 10.m.50.6
+ip host c8 10.m.50.8
+ip host sw 10.m.1.4
+ip host ed 10.m.m.1
+
