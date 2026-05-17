@@ -1,3 +1,47 @@
 876
 
 use day 5
+
+
+fortinet
+
+user: admin
+Pass: [ENTER] (WALANG PASSWORD) 
+new pass: C1sc0123
+---AFTER LOGIN---
+execute factoryreset
+y
+-----
+
+user: admin
+Pass: [ENTER] (WALANG PASSWORD) 
+new pass: C1sc0123
+get system interface phys
+[OPEN IN SECURECRT - SSH2 - USE PORT 1 IP]
+
+!@FWEDGE - LOCAL USER DIRECTORY it is in day5 network access 1990+
+config system admin
+ edit admin
+  set accprofile super_admin
+  set vdom root
+  set password C1sc0123
+  next
+ edit Dale
+  set accprofile super_admin
+  set vdom root
+  set password pass
+  end
+show system admin
+~~~
+
+
+!@R4
+conf t
+ int e3/3
+  no shut
+  ip add 10.3.1.1 255.255.255.252
+  end 
+
+--208.8.8.200----
+
+
