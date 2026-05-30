@@ -160,8 +160,3 @@ mastering subnetting:
            250       100      20
 900SQM: 60m
         300    300    300
-
-
-
-
-
